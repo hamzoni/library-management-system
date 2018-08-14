@@ -1,81 +1,34 @@
 package app.service;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import app.entity.Book;
 import app.entity.Ticket;
 import app.entity.User;
-import app.exception.ExceptionRecordNotFound;
-import app.repository.UserRepository;
 
-@Service("userDetailsService")
-public class UserService implements IUserService {
+/*
+ * Use cases: 13, 15, 16, 17, 18, 19
+ */
 
-	@Autowired
-	UserRepository userRepo;
+public interface UserService {
+	// UC18
+	void create(User user);
 
-	public void create(User user) {
+	// UC16
+	void update(User user);
 
-		// check if username is duplicated
-		userRepo.save(user);
+	// UC17
+	void delete(long userId);
 
-	}
+	// UC15
+	List<User> list();
 
-	@Override
-	public void update(User user) {
-		userRepo.save(user);
-	}
+	// UC19
+	User show(long userId);
 
-	@Override
-	public void delete(long userId) {
+	// UC13
+	List<Book> viewBorrowedBooks(long borrowerId);
 
-		if (!userRepo.existsById(userId))
-			throw new ExceptionRecordNotFound();
-
-		User user = userRepo.findById(userId).get();
-		userRepo.delete(user);
-
-	}
-
-	@Override
-	public List<User> list() {
-
-		List<User> list = new ArrayList<User>();
-
-		userRepo.findAll().iterator().forEachRemaining(list::add);
-
-		return list;
-
-	}
-	
-	@Override
-	public User show(long userId) {
-		return userRepo.findById(userId).get();
-	}
-
-	@Override
-	public List<Book> viewBorrowedBooks(long borrowerId) {
-
-		// check if user is available
-		if (!userRepo.existsById(borrowerId))
-			throw new ExceptionRecordNotFound();
-
-		User borrower = userRepo.findById(borrowerId).get();
-		return borrower.getBooks();
-	}
-
-	@Override
-	public List<Ticket> viewBorrowTickets(long borrowerId) {
-		// check if user is available
-		if (!userRepo.existsById(borrowerId))
-			throw new ExceptionRecordNotFound();
-		
-		User borrower = userRepo.findById(borrowerId).get();
-		return borrower.getTickets();
-	}
-
+	// UC24
+	List<Ticket> viewBorrowTickets(long borrowerId);
 }

@@ -65,6 +65,7 @@ public class UserController {
 	}
 	
 	@GetMapping()
+	@JsonView(View.Ticket.class)
 	public List<User> listUsers() {
 		return userService.list();
 	}

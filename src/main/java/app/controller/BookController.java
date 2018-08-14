@@ -23,7 +23,7 @@ import app.util.View;
 
 @RestController
 @RequestMapping("/book")
-public class BookController {
+public class BookController extends BaseControllerV1 {
 
 	@Autowired
 	private BookService bookService;

@@ -42,7 +42,7 @@ public class TicketController {
 	}
 
 	@PutMapping("borrow")
-	public Notification borrowBook(@RequestBody Map<String, Object> requests) {
+	public Notification borrowBook(@RequestBody Map<String, Object> requests) throws Exception {
 		if (!requests.containsKey("bookId") || !requests.containsKey("userId")) {
 			throw new ExceptionMalformParam("bookId and userId required");
 		}

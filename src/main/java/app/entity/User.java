@@ -109,10 +109,6 @@ public class User {
 		this.tickets = books;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}

@@ -1,90 +1,30 @@
 package app.service;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import app.entity.Book;
 import app.entity.Ticket;
 import app.entity.User;
-import app.exception.ExceptionDuplicateRecord;
-import app.exception.ExceptionRecordNotFound;
-import app.repository.BookRepository;
-import app.repository.UserRepository;
 
-@Service
-public class BookService implements IBookService {
+public interface BookService {
+	// UC3
+	void create(Book book);
 
-	@Autowired
-	BookRepository bookRepo;
+	// UC4
+	void update(Book book);
 
-	@Autowired
-	UserRepository userRepo;
+	// UC5
+	void delete(long bookId);
 
-	public void create(Book book) {
+	// UC7
+	List<Book> list();
 
-		// check if book's name is duplicated
-		try {
-			bookRepo.save(book);
-		} catch (ConstraintViolationException e) {
-			throw new ExceptionDuplicateRecord();
-		}
-
-	}
-
-	@Override
-	public void update(Book book) {
-		bookRepo.save(book);
-	}
-
-	@Override
-	public void delete(long bookId) {
-
-		if (!bookRepo.existsById(bookId))
-			throw new ExceptionRecordNotFound();
-
-		Book book = bookRepo.findById(bookId).get();
-		bookRepo.delete(book);
-
-	}
-
-	@Override
-	public List<Book> list() {
-
-		List<Book> list = new ArrayList<Book>();
-
-		bookRepo.findAll().iterator().forEachRemaining(list::add);
-
-		return list;
-
-	}
-
-	@Override
-	public Book show(long bookId) {
-		return bookRepo.findById(bookId).get();
-	}
-
-	@Override
-	public List<User> viewBorrowers(long bookId) {
-		// check if book is available
-		if (!bookRepo.existsById(bookId))
-			throw new ExceptionRecordNotFound();
-		
-		Book book = bookRepo.findById(bookId).get();
-		return book.getBorrowers();
-	}
-
-	@Override
-	public List<Ticket> viewTickets(long bookId) {
-		// check if book is available
-		if (!bookRepo.existsById(bookId))
-			throw new ExceptionRecordNotFound();
-		
-		Book book = bookRepo.findById(bookId).get();
-		return book.getTickets();
-	}
-
+	// UC6
+	Book show(long bookId);
+	
+	// UC22
+	List<User> viewBorrowers(long bookId);
+	
+	// UC22
+	List<Ticket> viewTickets(long bookId);
 }
