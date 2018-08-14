@@ -41,7 +41,7 @@ public class TicketController {
 		return ticketService.viewLendedBooks();
 	}
 
-	@PutMapping("borrow")
+	@PutMapping("request/borrow")
 	public Notification borrowBook(@RequestBody Map<String, Object> requests) throws Exception {
 		if (!requests.containsKey("bookId") || !requests.containsKey("userId")) {
 			throw new ExceptionMalformParam("bookId and userId required");
@@ -69,15 +69,15 @@ public class TicketController {
 		return new Notification(true, "Done");
 	}
 
-	@PutMapping("borrow/extend/{libraryId}")
-	public Notification requestExtendBorrowDate(@PathVariable("libraryId") long id) {
+	@PutMapping("{ticketId}/request/extend")
+	public Notification requestExtendBorrowDate(@PathVariable("ticketId") long id) {
 		ticketService.requestExtendBorrowDate(id);
 
 		return new Notification(true, "Request extend ticket successfully");
 	}
 
-	@PutMapping("extend/{libraryId}")
-	public Notification extendBorrowDate(@PathVariable("libraryId") long id,
+	@PutMapping("{ticketId}/extend")
+	public Notification extendBorrowDate(@PathVariable("ticketId") long id,
 			@RequestBody Map<String, Object> requests) {
 		if (!requests.containsKey("expireDate")) {
 			throw new ExceptionMalformParam("expireDate required");
