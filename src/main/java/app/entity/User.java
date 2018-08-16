@@ -1,6 +1,7 @@
 package app.entity;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,12 +12,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import com.fasterxml.jackson.annotation.JsonView;
 
 import app.util.View;
 
 @Entity
-public class User {
+public class User implements UserDetails {
 
 	/**
 	 * 
@@ -37,6 +41,10 @@ public class User {
 	private String username;
 
 	@JsonView(View.Ticket.class)
+	@Column(unique = true)
+	private String email;
+
+	@JsonView(View.Ticket.class)
 	private String password;
 
 	@JsonView(View.Ticket.class)
@@ -54,18 +62,19 @@ public class User {
 		super();
 	}
 
-	public User(String username, String password, int role) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.role = role;
+	public List<Book> getBooks() {
+		List<Book> books = new ArrayList<Book>();
+		for (Ticket ticket : tickets) {
+			books.add(ticket.getBook());
+		}
+		return books;
 	}
 
 	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -75,6 +84,14 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -93,24 +110,44 @@ public class User {
 		this.role = role;
 	}
 
-	public List<Book> getBooks() {
-		List<Book> books = new ArrayList<Book>();
-		for (Ticket ticket : tickets) {
-			books.add(ticket.getBook());
-		}
-		return books;
-	}
-
 	public List<Ticket> getTickets() {
 		return tickets;
 	}
 
-	public void setTickets(List<Ticket> books) {
-		this.tickets = books;
+	public void setTickets(List<Ticket> tickets) {
+		this.tickets = tickets;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
 	}
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

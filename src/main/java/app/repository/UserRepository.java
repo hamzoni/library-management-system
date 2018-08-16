@@ -8,5 +8,9 @@ import app.entity.User;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Long>, JpaRepository<User, Long> {
-	User findOneByUsername(String username);
+	
+	User findByUsername(String username);
+
+	User findByEmail(String email);
+	
 }
