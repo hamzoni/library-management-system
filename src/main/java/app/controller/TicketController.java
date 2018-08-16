@@ -23,8 +23,8 @@ import app.util.Notification;
 import app.util.View;
 
 @RestController
-@RequestMapping("/ticket")
-public class TicketController {
+@RequestMapping("**/ticket")
+public class TicketController implements BaseController {
 
 	@Autowired
 	private TicketService ticketService;

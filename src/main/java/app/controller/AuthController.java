@@ -14,8 +14,8 @@ import app.service.UserService;
 import app.util.Notification;
 
 @RestController
-@RequestMapping("/auth")
-public class AuthController {
+@RequestMapping("**/auth")
+public class AuthController implements BaseController {
 
 	@Autowired
 	private UserService userService;

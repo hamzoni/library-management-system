@@ -22,8 +22,8 @@ import app.util.Notification;
 import app.util.View;
 
 @RestController
-@RequestMapping("/book")
-public class BookController {
+@RequestMapping("**/book")
+public class BookController implements BaseController {
 
 	@Autowired
 	private BookService bookService;
