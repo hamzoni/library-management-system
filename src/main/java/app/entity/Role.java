@@ -1,29 +1,31 @@
 package app.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
+import app.config.RoleConfig;
+import app.util.View;
 
 @Entity
 public class Role {
-	
-	public static final int ADMIN = 0;
-	public static final int LIBRARIAN = 1;
-	public static final int BORROWER = 2;
-	
-	public static final String[] TITLE = new String[] {
-		"ADMIN", "LIBRARIAN", "BORROWER"
-	};
-	
+
 	@Id
-	@Column(unique = true)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column(unique = true)
 	private String name;
+
+	@JsonView(View.Ticket.class)
+	@ManyToMany( targetEntity=User.class, fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	private List users;
 
 	public Role() {
 		super();
@@ -32,7 +34,7 @@ public class Role {
 	public Role(int id) {
 		super();
 		this.id = id;
-		this.name = TITLE[id];
+		this.name = RoleConfig.TITLE[id];
 	}
 
 	public int getId() {
@@ -49,6 +51,14 @@ public class Role {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 
 }

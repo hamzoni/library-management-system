@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import app.config.RoleConfig;
+import app.dto.LoginDto;
 import app.dto.UserDto;
 import app.entity.Role;
 import app.entity.User;
@@ -56,10 +58,16 @@ public class AuthServiceImpl implements AuthService {
 		user.setUsername(accountDto.getUsername());
 		user.setPassword(passwordEncoder.encode(accountDto.getPassword()));
 		
-		Role defaultRole = roleRepo.findOrCreate(Role.BORROWER);
+		Role defaultRole = roleRepo.findOrCreate(RoleConfig.BORROWER);
 		user.setRoles(Arrays.asList(defaultRole));
 		
 		return userRepo.save(user);
+	}
+
+	@Override
+	public User login(LoginDto loginDto) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

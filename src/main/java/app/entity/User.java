@@ -1,7 +1,6 @@
 package app.entity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,15 +11,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import app.repository.RoleRepository;
 import app.util.View;
 
 @Entity
@@ -48,7 +45,7 @@ public class User {
 	private List<Ticket> tickets; // borrowed books
 
 	@JsonView(View.Ticket.class)
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany( targetEntity=Role.class, fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	private List<Role> roles;
 
 	public User() {
