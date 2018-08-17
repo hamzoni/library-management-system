@@ -11,10 +11,10 @@ import app.entity.User;
 import app.exception.ExceptionDuplicateRecord;
 
 /*
- * Use cases: 13, 15, 16, 17, 18, 19
+ * Use cases: 18, 16, 17, 15, 19, 13, 24
  */
 
-public interface UserService {
+public interface UserService extends UserDetailsService {
 	// UC18
 	void create(User user);
 
@@ -35,7 +35,5 @@ public interface UserService {
 
 	// UC24
 	List<Ticket> viewBorrowTickets(long borrowerId);
-
-	// UC2
-	User register(UserDto accountDto) throws ExceptionDuplicateRecord;
+	
 }

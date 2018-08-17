@@ -1,6 +1,7 @@
 package app.entity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,12 +13,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import app.repository.RoleRepository;
 import app.util.View;
 
 @Entity
+@Component
 public class User {
 
 	@JsonView(View.Ticket.class)
@@ -39,18 +46,15 @@ public class User {
 	@OneToMany(targetEntity = Ticket.class)
 	@JoinColumn(name = "borrower_id")
 	private List<Ticket> tickets; // borrowed books
-	
+
 	@JsonView(View.Ticket.class)
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Role> roles;
 
-	@Column(name = "enabled", nullable = false)
-	private boolean enabled;
-
 	public User() {
 		super();
 	}
-	
+
 	public User(String username, String email, String password, List<Role> roles) {
 		super();
 		this.username = username;
@@ -113,14 +117,6 @@ public class User {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
-	}
-
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
 	}
 
 }

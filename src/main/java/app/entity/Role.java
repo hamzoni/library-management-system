@@ -1,5 +1,6 @@
 package app.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,31 +8,38 @@ import javax.persistence.Id;
 
 @Entity
 public class Role {
+	
+	public static final int ADMIN = 0;
+	public static final int LIBRARIAN = 1;
+	public static final int BORROWER = 2;
+	
+	public static final String[] TITLE = new String[] {
+		"ADMIN", "LIBRARIAN", "BORROWER"
+	};
+	
 	@Id
+	@Column(unique = true)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private int id;
+	
+	@Column(unique = true)
 	private String name;
 
 	public Role() {
 		super();
 	}
 
-	public Role(String name) {
-		super();
-		this.name = name;
-	}
-
-	public Role(Long id, String name) {
+	public Role(int id) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.name = TITLE[id];
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
