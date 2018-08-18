@@ -1,6 +1,7 @@
 package app.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,8 +16,17 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-	public static final String CLIENT_ID = "lms";
-	public static final String SECRET = "lms";
+	@Value("${oauth.lms.client-id}")
+	private String CLIENT_ID;
+	
+	@Value("${oauth.lms.client-secret}")
+	private String SECRET;
+	
+	@Value("${oauth.lms.access-token-lifespan}")
+	private int ACCESS_TOKEN_LIFESPAN;
+	
+	@Value("${oauth.lms.refresh-token-lifespan}")
+	private int REFRESH_TOKEN_LIFESPAN;
 
 	static final String GRANT_TYPE_PASSWORD = "password";
 	static final String REFRESH_TOKEN = "refresh_token";
@@ -54,7 +64,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 			.secret(passwordEncoder.encode(SECRET))
 			.authorizedGrantTypes(GRANT_TYPE_PASSWORD, AUTHORIZATION_CODE, REFRESH_TOKEN)
 			.scopes("read", "write", "trust")
-			.accessTokenValiditySeconds(5000)
-			.refreshTokenValiditySeconds(5000);
+			.accessTokenValiditySeconds(ACCESS_TOKEN_LIFESPAN)
+			.refreshTokenValiditySeconds(REFRESH_TOKEN_LIFESPAN);
 	}
 }

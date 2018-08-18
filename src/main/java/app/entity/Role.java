@@ -31,10 +31,7 @@ public class Role {
 	@JsonView(View.Ticket.class)
 	@Column(unique = true)
 	private String name;
-
-	@ManyToMany( targetEntity=User.class, fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	private List<User> users;
-
+	
 	public Role() {
 		super();
 	}
@@ -59,14 +56,6 @@ public class Role {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
 	}
 
 }
