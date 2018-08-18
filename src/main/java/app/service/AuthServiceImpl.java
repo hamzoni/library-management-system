@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import app.config.RoleConfig;
 import app.dto.LoginDto;
 import app.dto.UserDto;
 import app.entity.Role;
@@ -58,7 +57,7 @@ public class AuthServiceImpl implements AuthService {
 		user.setUsername(accountDto.getUsername());
 		user.setPassword(passwordEncoder.encode(accountDto.getPassword()));
 		
-		Role defaultRole = roleRepo.findOrCreate(RoleConfig.BORROWER);
+		Role defaultRole = roleRepo.findOrCreate(Role.BORROWER);
 		user.setRoles(Arrays.asList(defaultRole));
 		
 		return userRepo.save(user);

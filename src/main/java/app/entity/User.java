@@ -45,7 +45,7 @@ public class User {
 	private List<Ticket> tickets; // borrowed books
 
 	@JsonView(View.Ticket.class)
-	@ManyToMany( targetEntity=Role.class, fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@ManyToMany( targetEntity=Role.class, fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
 	private List<Role> roles;
 
 	public User() {

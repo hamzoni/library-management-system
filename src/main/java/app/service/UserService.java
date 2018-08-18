@@ -4,11 +4,9 @@ import java.util.List;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import app.dto.UserDto;
 import app.entity.Book;
 import app.entity.Ticket;
 import app.entity.User;
-import app.exception.ExceptionDuplicateRecord;
 
 /*
  * Use cases: 18, 16, 17, 15, 19, 13, 24

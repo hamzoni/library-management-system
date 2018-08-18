@@ -15,8 +15,8 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-	static final String CLIENT_ID = "lms";
-	static final String SECRET = "lms";
+	public static final String CLIENT_ID = "lms";
+	public static final String SECRET = "lms";
 
 	static final String GRANT_TYPE_PASSWORD = "password";
 	static final String REFRESH_TOKEN = "refresh_token";

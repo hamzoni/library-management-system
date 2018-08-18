@@ -11,21 +11,29 @@ import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import app.config.RoleConfig;
 import app.util.View;
 
 @Entity
 public class Role {
+	
+	public static final int ADMIN = 0;
+	public static final int LIBRARIAN = 1;
+	public static final int BORROWER = 2;
+	
+	public static final String[] TITLE = new String[] {
+		"ADMIN", "LIBRARIAN", "BORROWER"
+	};
 
+	@JsonView(View.Ticket.class)
 	@Id
 	private int id;
 
+	@JsonView(View.Ticket.class)
 	@Column(unique = true)
 	private String name;
 
-	@JsonView(View.Ticket.class)
 	@ManyToMany( targetEntity=User.class, fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	private List users;
+	private List<User> users;
 
 	public Role() {
 		super();
@@ -34,7 +42,7 @@ public class Role {
 	public Role(int id) {
 		super();
 		this.id = id;
-		this.name = RoleConfig.TITLE[id];
+		this.name = TITLE[id];
 	}
 
 	public int getId() {
