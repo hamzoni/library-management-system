@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import app.util.View;
@@ -37,7 +38,7 @@ public class User {
 	@Column(unique = true)
 	private String email;
 
-	@JsonView(View.Ticket.class)
+	@JsonIgnore
 	private String password;
 
 	@OneToMany(targetEntity = Ticket.class)

@@ -1,21 +1,10 @@
 package app.config;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext;
-import org.springframework.security.oauth2.client.OAuth2RestOperations;
-import org.springframework.security.oauth2.client.OAuth2RestTemplate;
-import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
-import org.springframework.security.oauth2.client.token.AccessTokenRequest;
-import org.springframework.security.oauth2.client.token.DefaultAccessTokenRequest;
-import org.springframework.security.oauth2.client.token.grant.password.ResourceOwnerPasswordResourceDetails;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -83,36 +72,5 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 			.accessTokenValiditySeconds(ACCESS_TOKEN_LIFESPAN)
 			.refreshTokenValiditySeconds(REFRESH_TOKEN_LIFESPAN);
 	}
-	
-	// Access token request configuration
-	public OAuth2ProtectedResourceDetails resource(String username, String password) {
-		
-	    ResourceOwnerPasswordResourceDetails resource = new ResourceOwnerPasswordResourceDetails();
-	    
-	    List<String> scopes = Arrays.asList("read", "write", "trust");
-	    
-		resource.setAccessTokenUri(BASE_URL + "/oauth/token");
-		resource.setClientId(CLIENT_ID);
-		resource.setClientSecret(SECRET);
-		resource.setGrantType(GRANT_TYPE_PASSWORD);
-		resource.setScope(scopes);
-		
-		resource.setUsername(username);
-		resource.setPassword(password);
-		
-		return resource;
-	}
-
-	/*
-	 * Usage: restTemplate.getAccessToken();
-	 */
-	@Bean
-    public OAuth2RestOperations restTemplate(String username, String password) {
-        AccessTokenRequest atr = new DefaultAccessTokenRequest();
-        DefaultOAuth2ClientContext ctx = new DefaultOAuth2ClientContext(atr);
-        OAuth2ProtectedResourceDetails details = resource(username, password);
-
-        return new OAuth2RestTemplate(details, ctx);
-    }
 	
 }
