@@ -11,6 +11,6 @@ public class ApiConfig extends WebMvcConfigurationSupport {
 	
 	@Override
 	public RequestMappingHandlerMapping requestMappingHandlerMapping() {
-		return new ApiVersionRequestMappingHandler("v");
+		return new ApiVersionRequestMappingHandler("api/v");
 	}
 }

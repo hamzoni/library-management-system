@@ -32,11 +32,11 @@ public class Ticket {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@JsonView(View.Ticket.class)
+	@JsonView(View.TicketUser.class)
 	@ManyToOne
 	private Book book;
 
-	@JsonView(View.Ticket.class)
+	@JsonView(View.TicketBook.class)
 	@ManyToOne
 	private User borrower;
 

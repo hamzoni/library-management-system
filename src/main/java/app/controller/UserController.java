@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import app.api.ApiVersion;
 import app.entity.Book;
 import app.entity.Ticket;
 import app.entity.User;
@@ -22,31 +23,32 @@ import app.util.Notification;
 import app.util.View;
 
 @RestController
-@RequestMapping("**/user")
-public class UserController implements BaseController {
+@RequestMapping("users")
+@ApiVersion("1")
+public class UserController {
 
 	@Autowired
 	private UserService userService;
 	
-	@JsonView(View.Ticket.class)
+	@JsonView(View.Book.class)
 	@GetMapping("/{userId}/books")
 	public List<Book> viewBooks(@PathVariable long userId) {
 		return userService.viewBorrowedBooks(userId);
 	}
 	
-	@JsonView(View.Ticket.class)
+	@JsonView(View.TicketUser.class)
 	@GetMapping("/{userId}/tickets")
 	public List<Ticket> viewTickets(@PathVariable long userId) {
 		return userService.viewBorrowTickets(userId);
 	}
 
-	@PostMapping()
+	@PostMapping
 	public Notification createUser(@RequestBody User user) {
 		userService.create(user);
 		return new Notification(true, "Saved");
 	}
 
-	@PutMapping()
+	@PutMapping
 	public Notification updateUser(@RequestBody User user) {
 		userService.update(user);
 		return new Notification(true, "Saved");
@@ -58,14 +60,13 @@ public class UserController implements BaseController {
 		return new Notification(true, "Done");
 	}
 	
-	
 	@GetMapping("{id}")
 	public User showUserInfo(@PathVariable("id") int userId) {
 		return userService.show(userId);
 	}
 	
-	@GetMapping()
-	@JsonView(View.Ticket.class)
+	@GetMapping
+	@JsonView(View.User.class)
 	public List<User> listUsers() {
 		return userService.list();
 	}

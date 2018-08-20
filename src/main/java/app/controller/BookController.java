@@ -22,8 +22,8 @@ import app.util.Notification;
 import app.util.View;
 
 @RestController
-@RequestMapping("**/book")
-public class BookController implements BaseController {
+@RequestMapping("books")
+public class BookController {
 
 	@Autowired
 	private BookService bookService;
@@ -40,13 +40,13 @@ public class BookController implements BaseController {
 		return bookService.viewTickets(bookId);
 	}
 	
-	@PostMapping("/")
+	@PostMapping
 	public Notification createBook(@RequestBody Book Book) {
 		bookService.create(Book);
 		return new Notification(true, "Saved");
 	}
 
-	@PutMapping()
+	@PutMapping
 	public Notification updateBook(@RequestBody Book Book) {
 		bookService.update(Book);
 		return new Notification(true, "Saved");
@@ -65,7 +65,7 @@ public class BookController implements BaseController {
 	}
 	
 	@JsonView(View.Ticket.class)
-	@GetMapping()
+	@GetMapping
 	public List<Book> listBook() {
 		return bookService.list();
 	}

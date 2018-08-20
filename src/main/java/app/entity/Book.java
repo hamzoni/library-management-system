@@ -18,18 +18,19 @@ import app.util.View;
 @Entity
 public class Book {
 	
-	@JsonView(View.Ticket.class)
+	@JsonView(View.Book.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@JsonView(View.Ticket.class)
+	@JsonView(View.Book.class)
 	@Column(unique=true)
 	private String name;
 	
-	@JsonView(View.Ticket.class)
+	@JsonView(View.Book.class)
 	private int stock;
-
+	
+	@JsonView(View.BookDetail.class)
 	@OneToMany(targetEntity = Ticket.class)
 	@JoinColumn(name = "book_id")
 	private List<Ticket> tickets;

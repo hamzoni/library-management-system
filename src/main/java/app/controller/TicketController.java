@@ -23,20 +23,8 @@ import app.util.Notification;
 import app.util.View;
 
 @RestController
-@RequestMapping("**/{api}/ticket")
-public class TicketController implements BaseController {
-	
-	
-	@RequestMapping(params = "api=v1")
-	public static class ResourceV1 {
-		
-	}
-	
-	
-	@RequestMapping(params = "api=v2")
-	public static class ResourceV2 {
-		
-	}
+@RequestMapping("tickets")
+public class TicketController {
 
 	@Autowired
 	private TicketService ticketService;

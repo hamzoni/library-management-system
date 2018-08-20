@@ -17,11 +17,12 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		resources.resourceId(RESOURCE_ID).stateless(false);
 	}
 
-	
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/api/v1/auth/**").permitAll()
-			.antMatchers("/api/**").authenticated();
+			.antMatchers("/").permitAll()
+//			.antMatchers("/api/**").authenticated()
+			;
 	}
+	
 }

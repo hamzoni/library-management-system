@@ -6,14 +6,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import app.api.ApiVersion;
 
+
 @RestController
-@RequestMapping("/test")
-@ApiVersion(1.1)
+@RequestMapping("test")
+@ApiVersion({"1", "1.1", "quy"})
 public class TestController {
-	
-	
+
 	@GetMapping
-	public String hello() {
-		return "hello world";
+	public String test() {
+		return "test";
 	}
+	
 }

@@ -19,11 +19,11 @@ public class Role {
 		"ADMIN", "LIBRARIAN", "BORROWER"
 	};
 
-	@JsonView(View.Ticket.class)
+	@JsonView(View.Role.class)
 	@Id
 	private int id;
 
-	@JsonView(View.Ticket.class)
+	@JsonView(View.Role.class)
 	@Column(unique = true)
 	private String name;
 	

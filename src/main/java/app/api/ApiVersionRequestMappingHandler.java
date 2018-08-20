@@ -18,8 +18,8 @@ public class ApiVersionRequestMappingHandler extends RequestMappingHandlerMappin
 	private final String prefix;
 
 	public ApiVersionRequestMappingHandler(String prefix) {
-        this.prefix = prefix;
-    }
+		this.prefix = prefix;
+	}
 
 	@Override
 	protected RequestMappingInfo getMappingForMethod(Method method, Class<?> handlerType) {
@@ -45,20 +45,17 @@ public class ApiVersionRequestMappingHandler extends RequestMappingHandlerMappin
 	}
 
 	private RequestMappingInfo createApiVersionInfo(ApiVersion annotation, RequestCondition<?> customCondition) {
-        double[] values = annotation.value();
-        String[] patterns = new String[values.length];
-        for(int i=0; i<values.length; i++) {
-            // Build the URL prefix
-            patterns[i] = prefix+values[i]; 
-        }
+		String[] values = annotation.value();
+		String[] patterns = new String[values.length];
+		for (int i = 0; i < values.length; i++) {
+			// Build the URL prefix
+			patterns[i] = prefix + values[i];
+		}
 
-        return new RequestMappingInfo(
-                new PatternsRequestCondition(patterns, getUrlPathHelper(), getPathMatcher(), useSuffixPatternMatch(), useTrailingSlashMatch(), getFileExtensions()),
-                new RequestMethodsRequestCondition(),
-                new ParamsRequestCondition(),
-                new HeadersRequestCondition(),
-                new ConsumesRequestCondition(),
-                new ProducesRequestCondition(),
-                customCondition);
-    }
+		return new RequestMappingInfo(
+				new PatternsRequestCondition(patterns, getUrlPathHelper(), getPathMatcher(), useSuffixPatternMatch(),
+						useTrailingSlashMatch(), getFileExtensions()),
+				new RequestMethodsRequestCondition(), new ParamsRequestCondition(), new HeadersRequestCondition(),
+				new ConsumesRequestCondition(), new ProducesRequestCondition(), customCondition);
+	}
 }

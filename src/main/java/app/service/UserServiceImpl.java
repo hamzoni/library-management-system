@@ -1,6 +1,5 @@
 package app.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,13 +43,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> list() {
-
-		List<User> list = new ArrayList<User>();
-
-		userRepo.findAll().iterator().forEachRemaining(list::add);
-
-		return list;
-
+		return userRepo.findAll();
 	}
 
 	@Override

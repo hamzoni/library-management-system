@@ -1,6 +1,5 @@
 package app.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.exception.ConstraintViolationException;
@@ -53,13 +52,7 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public List<Book> list() {
-
-		List<Book> list = new ArrayList<Book>();
-
-		bookRepo.findAll().iterator().forEachRemaining(list::add);
-
-		return list;
-
+		return bookRepo.findAll();
 	}
 
 	@Override

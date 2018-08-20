@@ -18,9 +18,7 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-import app.api.ApiVersionRequestMappingHandler;
 import app.service.UserService;
 
 @Configuration

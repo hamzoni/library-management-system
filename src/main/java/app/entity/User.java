@@ -25,16 +25,16 @@ import app.util.View;
 @Component
 public class User {
 
-	@JsonView(View.Ticket.class)
+	@JsonView(View.User.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@JsonView(View.Ticket.class)
+	@JsonView(View.User.class)
 	@Column(unique = true)
 	private String username;
 
-	@JsonView(View.Ticket.class)
+	@JsonView(View.User.class)
 	@Column(unique = true)
 	private String email;
 
@@ -45,8 +45,8 @@ public class User {
 	@JoinColumn(name = "borrower_id")
 	private List<Ticket> tickets; // borrowed books
 
-	@JsonView(View.Ticket.class)
-	@ManyToMany( targetEntity=Role.class, fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@JsonView(View.User.class)
+	@ManyToMany(targetEntity = Role.class, fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Role> roles;
 
 	public User() {
