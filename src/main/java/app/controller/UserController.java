@@ -17,13 +17,11 @@ import com.fasterxml.jackson.annotation.JsonView;
 import app.entity.Book;
 import app.entity.Ticket;
 import app.entity.User;
-import app.lms.ApiVersionControl;
 import app.service.UserService;
 import app.util.Notification;
 import app.util.View;
 
 @RestController
-@ApiVersionControl
 @RequestMapping("**/user")
 public class UserController implements BaseController {
 

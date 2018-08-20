@@ -15,6 +15,8 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,12 +26,10 @@ import org.springframework.web.client.RestTemplate;
 import app.dto.AccessCardDto;
 import app.dto.LoginDto;
 import app.dto.UserDto;
-import app.lms.ApiVersionControl;
 import app.service.AuthService;
 import app.util.Notification;
 
 @RestController
-@ApiVersionControl
 @RequestMapping("/auth")
 public class AuthController {
 	
