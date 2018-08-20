@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import app.api.ApiVersion;
 import app.entity.Book;
 import app.entity.Ticket;
 import app.entity.User;
@@ -23,6 +24,7 @@ import app.util.View;
 
 @RestController
 @RequestMapping("books")
+@ApiVersion("1")
 public class BookController {
 
 	@Autowired
@@ -64,7 +66,7 @@ public class BookController {
 		return bookService.show(bookId);
 	}
 	
-	@JsonView(View.Ticket.class)
+	@JsonView(View.Book.class)
 	@GetMapping
 	public List<Book> listBook() {
 		return bookService.list();

@@ -168,4 +168,14 @@ public class TicketServiceImpl implements TicketService {
 		return ticketRepo.findTicketByActivity(Ticket.REQUEST.EXTEND);
 	}
 
+	@Override
+	public List<Ticket> viewsExpiredTickets() {
+		return ticketRepo.getExpiredTickets();
+	}
+
+	@Override
+	public List<Ticket> viewsExpiredTickets(Long userId) {
+		return ticketRepo.getExpiredTickets(userId);
+	}
+
 }

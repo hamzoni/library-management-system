@@ -41,6 +41,7 @@ public class User {
 	@JsonIgnore
 	private String password;
 
+	@JsonView(View.UserDetail.class)
 	@OneToMany(targetEntity = Ticket.class)
 	@JoinColumn(name = "borrower_id")
 	private List<Ticket> tickets; // borrowed books

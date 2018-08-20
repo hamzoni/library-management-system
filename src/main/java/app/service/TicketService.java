@@ -11,6 +11,12 @@ import app.entity.Ticket;
  */
 
 public interface TicketService {
+	
+	// UC29
+	List<Ticket> viewsExpiredTickets();
+	
+	// UC30
+	List<Ticket> viewsExpiredTickets(Long userId);
 
 	// UC11
 	void borrow(long bookId, long userId)  throws Exception;

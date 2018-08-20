@@ -3,8 +3,11 @@ package app.controller;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import app.api.ApiVersion;
 import app.entity.Book;
 import app.entity.Ticket;
 import app.exception.ExceptionMalformParam;
@@ -24,22 +28,38 @@ import app.util.View;
 
 @RestController
 @RequestMapping("tickets")
+@ApiVersion("1")
 public class TicketController {
 
 	@Autowired
 	private TicketService ticketService;
-
-	@JsonView(View.Ticket.class)
-	@GetMapping("list/books/extend")
-	public List<Book> listExtendBooks() {
-		return ticketService.viewRequestedExtendBooks();
+	
+	@JsonView(View.TicketDetail.class)
+	@GetMapping(value = {"list/expired", "list/expired/{id}"})
+	public List<Ticket> showExpiredTickets(@PathVariable Optional<Long> id) {
+		if (id.isPresent()) {
+			 return ticketService.viewsExpiredTickets(id.get());
+		}
+		return ticketService.viewsExpiredTickets();
 	}
 
 	@JsonView(View.Ticket.class)
-	@GetMapping("list/books/lend")
-	public List<Book> listLendBooks() {
-		return ticketService.viewLendedBooks();
+	@GetMapping("list/books/{type}")
+	public ResponseEntity<List<Book>> listExtendBooks(@PathVariable String type) {
+		
+		List<Book> tickets = null;
+		
+		if (type.equals("extends")) {
+			tickets = ticketService.viewRequestedExtendBooks();
+		} else if (type.equals("lends")) {
+			tickets = ticketService.viewLendedBooks();
+		}
+		
+		if (tickets != null) return new ResponseEntity<>(tickets, HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		
 	}
+	
 
 	@PutMapping("request/borrow")
 	public Notification borrowBook(@RequestBody Map<String, Object> requests) throws Exception {
