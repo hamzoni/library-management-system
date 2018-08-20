@@ -3,10 +3,6 @@ package app.dto;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import app.validator.PasswordMatches;
-import app.validator.ValidEmail;
-
-@PasswordMatches
 public class UserDto {
 	@NotNull
 	@NotEmpty
@@ -17,7 +13,6 @@ public class UserDto {
 	private String password;
 	private String verifyPassword;
 
-	@ValidEmail
 	@NotNull
 	@NotEmpty
 	private String email;

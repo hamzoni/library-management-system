@@ -24,10 +24,12 @@ import org.springframework.web.client.RestTemplate;
 import app.dto.AccessCardDto;
 import app.dto.LoginDto;
 import app.dto.UserDto;
+import app.lms.ApiVersionControl;
 import app.service.AuthService;
 import app.util.Notification;
 
 @RestController
+@ApiVersionControl
 @RequestMapping("/auth")
 public class AuthController {
 	

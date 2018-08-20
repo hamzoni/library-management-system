@@ -17,12 +17,14 @@ import com.fasterxml.jackson.annotation.JsonView;
 import app.entity.Book;
 import app.entity.Ticket;
 import app.exception.ExceptionMalformParam;
+import app.lms.ApiVersionControl;
 import app.service.TicketService;
 import app.util.DateUtil;
 import app.util.Notification;
 import app.util.View;
 
 @RestController
+@ApiVersionControl
 @RequestMapping("**/ticket")
 public class TicketController implements BaseController {
 
