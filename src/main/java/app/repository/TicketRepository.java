@@ -2,8 +2,8 @@ package app.repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +13,7 @@ import app.entity.Ticket;
 
 @Repository
 @Transactional
-public interface TicketRepository extends CrudRepository<Ticket, Long>, TicketRepositoryCustomized {
+public interface TicketRepository extends JpaRepository<Ticket, Long>, TicketRepositoryCustomized {
 	@Query("FROM Ticket t WHERE t.action = :action")
 	public List<Ticket> findTicketByActivity(@Param("action") int action);
 

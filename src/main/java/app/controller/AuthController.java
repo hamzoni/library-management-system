@@ -30,15 +30,6 @@ import app.util.Notification;
 @RestController
 @RequestMapping("auth")
 public class AuthController {
-	
-	@Autowired
-	private AuthService authService;
-
-	@PostMapping(value = "/register")
-	public Notification signUp(@Valid @RequestBody UserDto accountDto) {
-		authService.register(accountDto);
-		return new Notification(true, "Created");
-	}
 
 	@Value("${oauth.lms.client-id}")
 	private String CLIENT_ID;
@@ -52,6 +43,15 @@ public class AuthController {
 	@Autowired
 	private TokenStore tokenStore;
 	
+	@Autowired
+	private AuthService authService;
+
+	@PostMapping(value = "/register")
+	public Notification signUp(@Valid @RequestBody UserDto accountDto) {
+		authService.register(accountDto);
+		return new Notification(true, "Created");
+	}
+
 	@PostMapping(value = "/login")
 	public Object signIn(@RequestBody LoginDto loginDto) {
 		

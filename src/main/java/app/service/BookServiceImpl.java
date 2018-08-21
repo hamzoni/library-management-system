@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import app.entity.Book;
@@ -80,4 +82,8 @@ public class BookServiceImpl implements BookService {
 		return book.getTickets();
 	}
 
+	@Override
+	public Page<Book> paginate(Pageable pageable) {
+		return bookRepo.findAll(pageable);
+	}
 }
