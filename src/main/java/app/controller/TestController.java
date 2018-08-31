@@ -9,12 +9,19 @@ import app.api.ApiVersion;
 
 @RestController
 @RequestMapping("test")
-@ApiVersion({"1", "1.1", "quy"})
+@ApiVersion({"1"})	
 public class TestController {
 
 	@GetMapping
+	@ApiVersion("")
 	public String test() {
 		return "test";
+	}
+	
+	@ApiVersion("2")
+	@GetMapping()
+	public String test2() {
+		return "test2";
 	}
 	
 }

@@ -8,9 +8,10 @@ import app.api.ApiVersionRequestMappingHandler;
 
 @Configuration
 public class ApiConfig extends WebMvcConfigurationSupport {
-	
+
 	@Override
 	public RequestMappingHandlerMapping requestMappingHandlerMapping() {
 		return new ApiVersionRequestMappingHandler("api/v");
 	}
+
 }
