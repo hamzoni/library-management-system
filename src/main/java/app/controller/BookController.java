@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import app.api.ApiVersion;
-import app.dto.PagingDto;
 import app.entity.Book;
 import app.entity.Ticket;
 import app.entity.User;
@@ -40,22 +39,12 @@ public class BookController {
 	@Autowired
 	BookRepository bookRepo;
 
-	@JsonView({View.Book.class})
+	@JsonView({ View.Book.class })
 	@GetMapping("quyta")
-	Object paginate(
-//			@PageableDefault(page=0, size=5) Pageable pageable
-			) {
-		
+	Page<Book> paginate(@PageableDefault(page = 0, size = 5) Pageable pageable) {
 		PageRequest request = PageRequest.of(1, 3, Sort.Direction.ASC, "id");
 		Page<Book> books = bookRepo.findAll(request);
-		
-		PagingDto pagingDto = new PagingDto();
-		
-		pagingDto.setPage(1);
-		
-		return pagingDto.getPage();
-//		return new PagingDto(books).getItems();
-		
+		return books;
 	}
 
 	@JsonView(View.Ticket.class)

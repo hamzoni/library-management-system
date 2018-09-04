@@ -58,9 +58,9 @@ public class AuthController {
 		// SET REQUEST HEADER
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-		String plainClientCredentials= CLIENT_ID + ":" + SECRET;
-		String base64ClientCredentials = new String(Base64.getEncoder().encode(plainClientCredentials.getBytes()));
-		headers.add("Authorization", "Basic " + base64ClientCredentials);
+		String plainCreds = CLIENT_ID + ":" + SECRET;
+		String base64Creds = new String(Base64.getEncoder().encode(plainCreds.getBytes()));
+		headers.add("Authorization", "Basic " + base64Creds);
 
 		// SET REQUEST BODY
 		MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
