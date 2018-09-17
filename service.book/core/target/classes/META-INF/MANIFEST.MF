@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
-Implementation-Title: service.book
+Implementation-Title: service.book.core
 Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: taquy
 Implementation-Vendor-Id: com.lms
 Build-Jdk: 1.8.0_181
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
- ot-starter-parent/service.book
+ ot-starter-parent/service.book.core
 Created-By: Maven Integration for Eclipse
 
