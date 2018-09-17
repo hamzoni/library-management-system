@@ -3,9 +3,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.lms</groupId>
-	<artifactId>library-management-system</artifactId>
+	<artifactId>service.book</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>library-management-system</name>
+	<name>service.book</name>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -25,6 +25,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -35,48 +36,17 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-dbcp2</artifactId>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.springframework.security.oauth/spring-security-oauth2 -->
-		<dependency>
-			<groupId>org.springframework.security.oauth</groupId>
-			<artifactId>spring-security-oauth2</artifactId>
-			<version>2.3.3.RELEASE</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.reflections/reflections -->
-		<!-- user for api version control and dynamic annotation data gathering -->
-		<dependency>
-			<groupId>org.reflections</groupId>
-			<artifactId>reflections</artifactId>
-			<version>0.9.10</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.springframework.hateoas/spring-hateoas -->
-		<!-- use for pagination -->
-		<dependency>
-			<groupId>org.springframework.hateoas</groupId>
-			<artifactId>spring-hateoas</artifactId>
 		</dependency>
 
 	</dependencies>
@@ -94,7 +64,7 @@
 				<artifactId>dockerfile-maven-plugin</artifactId>
 				<version>1.4.0</version>
 				<configuration>
-					<repository>taquyse/lms</repository>
+					<repository>lms/service/book</repository>
 					<tag>${project.version}</tag>
 					<username>taquyse</username>
 					<password>asdzxc123</password>
