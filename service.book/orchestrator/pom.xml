@@ -31,7 +31,20 @@
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
 		
+		<dependency>
+			<groupId>lms.shared</groupId>
+			<artifactId>lms.shared</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
 	</dependencies>
+	
+	<repositories>
+		<repository>
+			<id>lms.repo</id>
+			<url>/home/taquy/Projects/Spring/library-management-system/lms.repo</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>
