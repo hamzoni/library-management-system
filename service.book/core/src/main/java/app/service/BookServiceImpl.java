@@ -9,12 +9,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import app.entity.Book;
-import app.entity.Ticket;
-import app.entity.User;
-import app.exception.ExceptionDuplicateRecord;
-import app.exception.ExceptionRecordNotFound;
 import app.repository.BookRepository;
-import app.repository.UserRepository;
+import lms.shared.exceptions.ExceptionDuplicateRecord;
+import lms.shared.exceptions.ExceptionRecordNotFound;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -59,25 +56,6 @@ public class BookServiceImpl implements BookService {
 		return bookRepo.findById(bookId).get();
 	}
 
-	@Override
-	public List<User> viewBorrowers(long bookId) {
-		// check if book is available
-		if (!bookRepo.existsById(bookId))
-			throw new ExceptionRecordNotFound();
-		
-		Book book = bookRepo.findById(bookId).get();
-		return book.getBorrowers();
-	}
-
-	@Override
-	public List<Ticket> viewTickets(long bookId) {
-		// check if book is available
-		if (!bookRepo.existsById(bookId))
-			throw new ExceptionRecordNotFound();
-		
-		Book book = bookRepo.findById(bookId).get();
-		return book.getTickets();
-	}
 
 	@Override
 	public Page<Book> paginate(Pageable pageable) {

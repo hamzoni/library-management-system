@@ -6,8 +6,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import app.entity.Book;
-import app.entity.Ticket;
-import app.entity.User;
 
 public interface BookService {
 	// UC3
