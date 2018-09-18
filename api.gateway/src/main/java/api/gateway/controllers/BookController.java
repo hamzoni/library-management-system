@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import api.gateway.util.Notification;
-import api.gateway.util.View;
-import api.gateway.util.View.Book;
-import api.gateway.util.View.Ticket;
-import api.gateway.util.View.User;
 import api.gateway.versioning.ApiVersion;
+import lms.shared.dtos.BookDto;
+import lms.shared.dtos.TicketDto;
+import lms.shared.dtos.UserDto;
+import lms.shared.util.View;
 
 @RestController
 @RequestMapping("books")
@@ -29,26 +29,26 @@ public class BookController {
 	
 	@JsonView(View.Ticket.class)
 	@GetMapping("/{bookId}/borrowers")
-	public List<User> viewBorrowers(@PathVariable int bookId) {
-		List<User> borrowers = new ArrayList<User>();
+	public List<UserDto> viewBorrowers(@PathVariable int bookId) {
+		List<UserDto> borrowers = new ArrayList<UserDto>();
 		return borrowers;
 	}
 
 	@JsonView(View.Ticket.class)
 	@GetMapping("/{bookId}/tickets")
-	public List<Ticket> viewTickets(@PathVariable int bookId) {
-		List<Ticket> tickets = new ArrayList<Ticket>();
+	public List<TicketDto> viewTickets(@PathVariable int bookId) {
+		List<TicketDto> tickets = new ArrayList<TicketDto>();
 		
 		return tickets;
 	}
 
 	@PostMapping
-	public Notification createBook(@RequestBody Book Book) {
+	public Notification createBook(@RequestBody BookDto Book) {
 		return new Notification(true, "Saved");
 	}
 
 	@PutMapping
-	public Notification updateBook(@RequestBody Book Book) {
+	public Notification updateBook(@RequestBody BookDto Book) {
 		return new Notification(true, "Saved");
 	}
 
@@ -58,15 +58,15 @@ public class BookController {
 	}
 
 	@GetMapping("{id}")
-	public Book showBookDetail(@PathVariable("id") int bookId) {
-		Book book = null;
+	public BookDto showBookDetail(@PathVariable("id") int bookId) {
+		BookDto book = null;
 		return book;
 	}
 
-	@JsonView(View.Book.class)
+	@JsonView(lms.shared.util.View.Book.class)
 	@GetMapping
-	public List<Book> listBook() {
-		List<Book> books = new ArrayList<Book>();
+	public List<BookDto> listBook() {
+		List<BookDto> books = new ArrayList<BookDto>();
 		return books;
 	}
 }
