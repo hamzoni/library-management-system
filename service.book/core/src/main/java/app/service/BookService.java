@@ -24,12 +24,6 @@ public interface BookService {
 
 	// UC6
 	Book show(long bookId);
-	
-	// UC22
-	List<User> viewBorrowers(long bookId);
-	
-	// UC22
-	List<Ticket> viewTickets(long bookId);
 
 	Page<Book> paginate(Pageable pageable);
 

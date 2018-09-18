@@ -22,9 +22,6 @@ public class BookServiceImpl implements BookService {
 	@Autowired
 	BookRepository bookRepo;
 
-	@Autowired
-	UserRepository userRepo;
-
 	public void create(Book book) {
 
 		// check if book's name is duplicated

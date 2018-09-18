@@ -1,4 +1,4 @@
-package app.broker;
+package lms.shared;
 
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.rabbit.AsyncRabbitTemplate;

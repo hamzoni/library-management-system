@@ -32,9 +32,9 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>lms.shared</groupId>
-			<artifactId>lms.shared</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+		    <groupId>com.lms</groupId>
+		    <artifactId>lms.shared</artifactId>
+		    <version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
 	</dependencies>
@@ -42,7 +42,7 @@
 	<repositories>
 		<repository>
 			<id>lms.repo</id>
-			<url>/home/taquy/Projects/Spring/library-management-system/lms.repo</url>
+			<url>file://${project.basedir}/repo</url>
 		</repository>
 	</repositories>
 

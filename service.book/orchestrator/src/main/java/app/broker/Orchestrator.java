@@ -11,6 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
+import lms.shared.BrokerService;
+import lms.shared.Message;
+import lms.shared.SagaConverter;
+
 @Component
 public class Orchestrator {
 
@@ -56,9 +60,8 @@ public class Orchestrator {
 
 		if (msg.getCommand() == Message.COMMAND.BOOK_TICKET) {
 			
-			BookingTicketDTO ticketDto = SagaConverter.decode(msg.getContent(), BookingTicketDTO.class);
+//			BookingTicketDTO ticketDto = SagaConverter.decode(msg.getContent(), BookingTicketDTO.class);
 			
-			System.out.println("Received request: " + ticketDto);
 			
 			/*** EXECUTE BOOKING TICKET TRANSACTION ***/
 			Stack<Message> tasks = new Stack<Message>(); // to-do stack
@@ -66,12 +69,10 @@ public class Orchestrator {
 			int totalTasks = 0;
 
 			// define tasks
-			Message task1 = new Message(msg.getContent(), Message.COMMAND.RESERVE_SEAT, "room-route");
-			Message task2 = new Message(msg.getContent(), Message.COMMAND.MAKE_PAYMENT, "account-route");
+		
 
 			// push tasks to to-do stack
-			tasks.push(task1);
-			tasks.push(task2);
+		
 
 			totalTasks = tasks.size();
 
