@@ -1,4 +1,4 @@
-package lms.shared;
+package lms.shared.dtos;
 
 import java.util.UUID;
 
@@ -9,20 +9,9 @@ public final class Message {
 	private String route;
 	private boolean isAsync;
 	private boolean isDone;
-
-	public static final class COMMAND {
-		// margin of commands: to identify safe gaps between command and its rollback command
-		public static final int MARGIN = 1000;
-		
-		public static final int BOOK_TICKET = MARGIN + 0;
-		public static final int RESERVE_SEAT = MARGIN + 1;
-		public static final int MAKE_PAYMENT = MARGIN + 2;
-		
-		public static final int BOOK_TICKET_ROLLBACK = BOOK_TICKET + MARGIN;
-		public static final int RESERVE_SEAT_ROLLBACK = RESERVE_SEAT + MARGIN;
-		public static final int MAKE_PAYMENT_ROLLBACK = MAKE_PAYMENT + MARGIN;
-	}
 	
+	public static final int MARGIN = 1000;
+
 	public Message() {
 		
 	}
@@ -103,7 +92,7 @@ public final class Message {
 	}
 	
 	public void setRollbackCommand(int command) {
-		this.command = command + COMMAND.MARGIN;
+		this.command = command + MARGIN;
 	}
 
 }

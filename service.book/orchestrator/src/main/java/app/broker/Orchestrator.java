@@ -11,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
-import lms.shared.BrokerService;
-import lms.shared.Message;
-import lms.shared.SagaConverter;
+import lms.shared.commands.BookCmd;
+import lms.shared.dtos.Message;
+import lms.shared.services.BrokerService;
 
 @Component
 public class Orchestrator {
@@ -58,7 +58,7 @@ public class Orchestrator {
 		
 		boolean isFailed = false; // transaction status
 
-		if (msg.getCommand() == Message.COMMAND.BOOK_TICKET) {
+		if (msg.getCommand() == BookCmd.BOOK_TICKET) {
 			
 //			BookingTicketDTO ticketDto = SagaConverter.decode(msg.getContent(), BookingTicketDTO.class);
 			

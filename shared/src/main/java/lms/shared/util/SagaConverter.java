@@ -1,4 +1,4 @@
-package lms.shared;
+package lms.shared.util;
 
 import java.io.IOException;
 

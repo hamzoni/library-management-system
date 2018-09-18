@@ -10,7 +10,7 @@ import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.context.annotation.Bean;
 
-import lms.shared.BrokerService;
+import lms.shared.services.BrokerService;
 
 public class BrokerConfig {
 	@Bean
