@@ -1,8 +1,8 @@
-package lms.shared.dtos;
+package saga.share.dtos;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import lms.shared.util.View;
+import saga.share.util.View;
 
 public class BookDto {
 	@JsonView(View.Book.class)

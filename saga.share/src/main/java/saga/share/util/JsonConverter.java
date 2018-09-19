@@ -1,4 +1,4 @@
-package lms.shared.util;
+package saga.share.util;
 
 import java.io.IOException;
 

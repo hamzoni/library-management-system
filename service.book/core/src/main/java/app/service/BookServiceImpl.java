@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 import app.entity.Book;
 import app.repository.BookRepository;
-import lms.shared.exceptions.ExceptionDuplicateRecord;
-import lms.shared.exceptions.ExceptionRecordNotFound;
+import saga.share.exceptions.ExceptionDuplicateRecord;
+import saga.share.exceptions.ExceptionRecordNotFound;
 
 @Service
 public class BookServiceImpl implements BookService {

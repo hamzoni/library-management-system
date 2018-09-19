@@ -1,4 +1,4 @@
-package lms.shared.dtos;
+package saga.share.dtos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
-import lms.shared.util.View;
+import saga.share.util.View;
 
 public class UserDto {
 

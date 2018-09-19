@@ -1,10 +1,10 @@
-package lms.shared.dtos;
+package saga.share.dtos;
 
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import lms.shared.util.View;
+import saga.share.util.View;
 
 public class TicketDto {
 
