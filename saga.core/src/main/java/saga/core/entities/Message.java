@@ -1,4 +1,4 @@
-package app.entities;
+package saga.core.entities;
 
 import java.util.UUID;
 

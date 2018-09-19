@@ -1,4 +1,4 @@
-package app.services;
+package saga.core.services;
 
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.rabbit.AsyncRabbitTemplate;
@@ -7,7 +7,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import app.entities.Message;
+import saga.core.entities.Message;
 
 public class BrokerService {
 	@Autowired
