@@ -5,12 +5,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.lms</groupId>
-	<artifactId>saga.shared</artifactId>
+	<artifactId>saga.share</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>shared</name>
-	<description>lms.shared</description>
+	<name>share</name>
+	<description>saga.share</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -52,6 +52,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>

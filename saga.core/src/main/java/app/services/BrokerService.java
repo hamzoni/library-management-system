@@ -1,4 +1,4 @@
-package lms.shared.services;
+package app.services;
 
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.rabbit.AsyncRabbitTemplate;
@@ -7,7 +7,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import lms.shared.dtos.Message;
+import app.entities.Message;
 
 public class BrokerService {
 	@Autowired

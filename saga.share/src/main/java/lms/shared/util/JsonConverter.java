@@ -5,7 +5,7 @@ import java.io.IOException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class SagaConverter {
+public class JsonConverter {
 	public static ObjectMapper mapper = new ObjectMapper();
 
 	public static <T> String encode(T obj) throws JsonProcessingException {
