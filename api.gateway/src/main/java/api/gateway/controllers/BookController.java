@@ -16,17 +16,16 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import api.gateway.util.Notification;
 import api.gateway.versioning.ApiVersion;
-import lms.shared.dtos.BookDto;
-import lms.shared.dtos.TicketDto;
-import lms.shared.dtos.UserDto;
-import lms.shared.util.View;
+import saga.share.dtos.BookDto;
+import saga.share.dtos.TicketDto;
+import saga.share.dtos.UserDto;
+import saga.share.util.View;
 
 @RestController
 @RequestMapping("books")
 @ApiVersion("1")
 public class BookController {
 
-	
 	@JsonView(View.Ticket.class)
 	@GetMapping("/{bookId}/borrowers")
 	public List<UserDto> viewBorrowers(@PathVariable int bookId) {
@@ -38,7 +37,7 @@ public class BookController {
 	@GetMapping("/{bookId}/tickets")
 	public List<TicketDto> viewTickets(@PathVariable int bookId) {
 		List<TicketDto> tickets = new ArrayList<TicketDto>();
-		
+
 		return tickets;
 	}
 
@@ -63,7 +62,7 @@ public class BookController {
 		return book;
 	}
 
-	@JsonView(lms.shared.util.View.Book.class)
+	@JsonView(View.Book.class)
 	@GetMapping
 	public List<BookDto> listBook() {
 		List<BookDto> books = new ArrayList<BookDto>();

@@ -36,18 +36,23 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
-		    <groupId>com.lms</groupId>
-		    <artifactId>lms.shared</artifactId>
-		    <version>0.0.1-SNAPSHOT</version>
+			<groupId>com.lms</groupId>
+			<artifactId>saga.core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.lms</groupId>
+			<artifactId>saga.share</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
 	<repositories>
 		<repository>
-			<id>lms.repo</id>
-			<url>file://${project.basedir}/repo</url>
+			<id>saga.repo</id>
+			<url>file://${project.basedir}/saga.repo</url>
 		</repository>
 	</repositories>
 
