@@ -14,13 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import app.api.ApiVersion;
-import app.entity.Book;
-import app.entity.Ticket;
 import app.entity.User;
 import app.service.UserService;
-import app.util.Notification;
-import app.util.View;
 
 @RestController
 @RequestMapping("users")
@@ -30,18 +25,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@JsonView(View.Book.class)
-	@GetMapping("/{userId}/books")
-	public List<Book> viewBooks(@PathVariable long userId) {
-		return userService.viewBorrowedBooks(userId);
-	}
-	
-	@JsonView(View.TicketUser.class)
-	@GetMapping("/{userId}/tickets")
-	public List<Ticket> viewTickets(@PathVariable long userId) {
-		return userService.viewBorrowTickets(userId);
-	}
-
 	@PostMapping
 	public Notification createUser(@RequestBody User user) {
 		userService.create(user);

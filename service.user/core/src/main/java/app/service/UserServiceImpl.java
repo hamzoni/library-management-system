@@ -9,10 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import app.dto.UserDetailsDto;
-import app.entity.Book;
-import app.entity.Ticket;
 import app.entity.User;
-import app.exception.ExceptionRecordNotFound;
 import app.repository.UserRepository;
 
 @Service("userService")
@@ -33,9 +30,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void delete(long userId) {
 
-		if (!userRepo.existsById(userId))
-			throw new ExceptionRecordNotFound();
-
 		User user = userRepo.findById(userId).get();
 		userRepo.delete(user);
 
@@ -49,27 +43,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User show(long userId) {
 		return userRepo.findById(userId).get();
-	}
-
-	@Override
-	public List<Book> viewBorrowedBooks(long borrowerId) {
-
-		// check if user is available
-		if (!userRepo.existsById(borrowerId))
-			throw new ExceptionRecordNotFound();
-
-		User borrower = userRepo.findById(borrowerId).get();
-		return borrower.getBooks();
-	}
-
-	@Override
-	public List<Ticket> viewBorrowTickets(long borrowerId) {
-		// check if user is available
-		if (!userRepo.existsById(borrowerId))
-			throw new ExceptionRecordNotFound();
-
-		User borrower = userRepo.findById(borrowerId).get();
-		return borrower.getTickets();
 	}
 
 	////// This method is used for authentication 2.0 process

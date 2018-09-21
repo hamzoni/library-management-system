@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import app.entity.Book;
-import app.entity.Ticket;
 import app.entity.User;
 
 /*
@@ -27,11 +25,5 @@ public interface UserService extends UserDetailsService {
 
 	// UC19
 	User show(long userId);
-
-	// UC13
-	List<Book> viewBorrowedBooks(long borrowerId);
-
-	// UC24
-	List<Ticket> viewBorrowTickets(long borrowerId);
 	
 }
