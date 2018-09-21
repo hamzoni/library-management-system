@@ -8,17 +8,13 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import app.entity.Book;
 import app.entity.Ticket;
-import app.entity.User;
 import app.exception.ExceptionDuplicateRecord;
 import app.exception.ExceptionInvalidBusinessProcess;
 import app.exception.ExceptionInvalidParam;
 import app.exception.ExceptionOutOfBook;
 import app.exception.ExceptionRecordNotFound;
-import app.repository.BookRepository;
 import app.repository.TicketRepository;
-import app.repository.UserRepository;
 
 @Service
 public class TicketServiceImpl implements TicketService {
@@ -26,48 +22,6 @@ public class TicketServiceImpl implements TicketService {
 	@Autowired
 	private TicketRepository ticketRepo;
 
-	@Autowired
-	private UserRepository userRepo;
-
-	@Autowired
-	private BookRepository bookRepo;
-
-	@Override
-	@Transactional
-	public synchronized void borrow(long bookId, long userId) {
-
-		// check if items are available
-		if (!bookRepo.existsById(bookId)) {
-			throw new ExceptionRecordNotFound("Book #" + bookId);
-		}
-
-		if (!userRepo.existsById(userId)) {
-			throw new ExceptionRecordNotFound("User #" + bookId);
-		}
-
-		// check if book is already booked by the user
-		if (ticketRepo.existByCase(userId, bookId)) {
-			throw new ExceptionDuplicateRecord("User has already borrowed this book");
-		}
-
-		// prepare data to insert new records
-		Book book = bookRepo.findById(bookId).get();
-		User user = userRepo.findById(userId).get();
-
-		if (book.getStock() == 0)
-			throw new ExceptionOutOfBook();
-
-		book.setStock(book.getStock() - 1);
-		bookRepo.save(book);
-
-		// check if books are still available
-		Ticket ticket = new Ticket();
-		ticket.setBook(book);
-		ticket.setBorrower(user);
-		ticket.setAction(Ticket.REQUEST.BORROW);
-
-		ticketRepo.save(ticket);
-	}
 
 	@Override
 	public void lend(long libraryId, LocalDateTime expireDate) {
@@ -139,21 +93,6 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public List<Book> viewLendedBooks() {
-		return ticketRepo.findBookByActivity(Ticket.REQUEST.NONE);
-	}
-
-	@Override
-	public List<Book> viewRequestedBorrowBooks() {
-		return ticketRepo.findBookByActivity(Ticket.REQUEST.BORROW);
-	}
-
-	@Override
-	public List<Book> viewRequestedExtendBooks() {
-		return ticketRepo.findBookByActivity(Ticket.REQUEST.EXTEND);
-	}
-
-	@Override
 	public List<Ticket> viewLendTickets() {
 		return ticketRepo.findTicketByActivity(Ticket.REQUEST.NONE);
 	}
@@ -174,8 +113,15 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
+	public void borrow(long bookId, long userId) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
 	public List<Ticket> viewsExpiredTickets(Long userId) {
-		return ticketRepo.getExpiredTickets(userId);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

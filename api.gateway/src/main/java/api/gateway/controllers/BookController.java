@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import api.gateway.util.Notification;
 import api.gateway.versioning.ApiVersion;
 import saga.share.dtos.BookDto;
 import saga.share.dtos.TicketDto;
 import saga.share.dtos.UserDto;
+import saga.share.util.Notification;
 import saga.share.util.View;
 
 @RestController

@@ -3,7 +3,6 @@ package app.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import app.entity.Book;
 import app.entity.Ticket;
 
 /*
@@ -29,15 +28,6 @@ public interface TicketService {
 	
 	// UC9
 	void extendBorrowDate(long libraryId, LocalDateTime expireDate);
-	
-	// UC10
-	List<Book> viewLendedBooks();
-
-	// UC20
-	List<Book> viewRequestedBorrowBooks();
-	
-	// UC14
-	List<Book> viewRequestedExtendBooks();
 
 	// UC23
 	List<Ticket> viewRequestedBorrowTickets();

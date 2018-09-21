@@ -6,13 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import app.util.View;
+import saga.share.util.View;
 
 /*
  * This class contains the relationship between Book and User
@@ -32,14 +31,6 @@ public class Ticket {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@JsonView(View.TicketUser.class)
-	@ManyToOne
-	private Book book;
-
-	@JsonView(View.TicketBook.class)
-	@ManyToOne
-	private User borrower;
-
 	@JsonView(View.Ticket.class)
 	private LocalDateTime borrowDate = LocalDateTime.now();
 
@@ -54,22 +45,6 @@ public class Ticket {
 
 	public Ticket() {
 		super();
-	}
-
-	public Book getBook() {
-		return book;
-	}
-
-	public void setBook(Book book) {
-		this.book = book;
-	}
-
-	public User getBorrower() {
-		return borrower;
-	}
-
-	public void setBorrower(User borrower) {
-		this.borrower = borrower;
 	}
 
 	public LocalDateTime getBorrowDate() {

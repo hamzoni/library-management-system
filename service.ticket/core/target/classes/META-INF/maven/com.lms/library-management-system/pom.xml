@@ -79,7 +79,25 @@
 			<artifactId>spring-hateoas</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.lms</groupId>
+			<artifactId>saga.core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.lms</groupId>
+			<artifactId>saga.share</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>saga.repo</id>
+			<url>file://${project.basedir}/saga.repo</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>

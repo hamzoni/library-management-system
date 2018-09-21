@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import app.entity.Book;
 import app.entity.Ticket;
 
 @Repository
@@ -16,10 +15,6 @@ import app.entity.Ticket;
 public interface TicketRepository extends JpaRepository<Ticket, Long>, TicketRepositoryCustomized {
 	@Query("FROM Ticket t WHERE t.action = :action")
 	public List<Ticket> findTicketByActivity(@Param("action") int action);
-
-	@Query(value = "FROM Book b WHERE EXISTS (FROM Ticket t"
-			+ " WHERE t.action = :action AND t.book.id = b.id) ")
-	public List<Book> findBookByActivity(@Param("action") int action);
 
 	@Query(value = "SELECT * FROM ticket WHERE borrower_id = :userId AND book_id = :bookId)", nativeQuery = true)
 	public Ticket findByCase(@Param("userId") long userId, @Param("bookId") long bookId);

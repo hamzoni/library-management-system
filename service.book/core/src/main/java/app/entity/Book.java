@@ -8,7 +8,7 @@ import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import app.util.View;
+import saga.share.util.View;
 
 @Entity
 public class Book {
