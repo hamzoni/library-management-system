@@ -3,16 +3,12 @@ package app.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.entity.Ticket;
-import app.exception.ExceptionDuplicateRecord;
 import app.exception.ExceptionInvalidBusinessProcess;
 import app.exception.ExceptionInvalidParam;
-import app.exception.ExceptionOutOfBook;
 import app.exception.ExceptionRecordNotFound;
 import app.repository.TicketRepository;
 

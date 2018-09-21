@@ -1,4 +1,4 @@
-package app.dto;
+package saga.share.dtos;
 
 public class LoginDto {
 	private String username;
