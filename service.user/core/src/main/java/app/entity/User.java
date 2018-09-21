@@ -1,6 +1,5 @@
 package app.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,16 +9,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
-import app.util.View;
+import saga.share.util.View;
 
 @Entity
 @Component
@@ -41,11 +38,6 @@ public class User {
 	@JsonIgnore
 	private String password;
 
-	@JsonView(View.UserDetail.class)
-	@OneToMany(targetEntity = Ticket.class)
-	@JoinColumn(name = "borrower_id")
-	private List<Ticket> tickets; // borrowed books
-
 	@JsonView(View.User.class)
 	@ManyToMany(targetEntity = Role.class, fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Role> roles;
@@ -60,14 +52,6 @@ public class User {
 		this.password = password;
 		this.email = email;
 		this.roles = roles;
-	}
-
-	public List<Book> getBooks() {
-		List<Book> books = new ArrayList<Book>();
-		for (Ticket ticket : tickets) {
-			books.add(ticket.getBook());
-		}
-		return books;
 	}
 
 	public long getId() {
@@ -100,14 +84,6 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public List<Ticket> getTickets() {
-		return tickets;
-	}
-
-	public void setTickets(List<Ticket> tickets) {
-		this.tickets = tickets;
 	}
 
 	public List<Role> getRoles() {

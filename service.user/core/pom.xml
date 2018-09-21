@@ -64,22 +64,25 @@
 			<version>2.3.3.RELEASE</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.reflections/reflections -->
-		<!-- user for api version control and dynamic annotation data gathering -->
 		<dependency>
-			<groupId>org.reflections</groupId>
-			<artifactId>reflections</artifactId>
-			<version>0.9.10</version>
+			<groupId>com.lms</groupId>
+			<artifactId>saga.core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.springframework.hateoas/spring-hateoas -->
-		<!-- use for pagination -->
 		<dependency>
-			<groupId>org.springframework.hateoas</groupId>
-			<artifactId>spring-hateoas</artifactId>
+			<groupId>com.lms</groupId>
+			<artifactId>saga.share</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>saga.repo</id>
+			<url>file://${project.basedir}/saga.repo</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>
