@@ -44,12 +44,4 @@ public class UserServiceImpl implements UserService {
 		return userRepo.findById(userId).get();
 	}
 
-	////// This method is used for authentication 2.0 process
-	@Override
-	@Transactional(readOnly = true)
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userRepo.findByUsername(username);
-		return new UserDetailsDto(user);
-	}
-
 }

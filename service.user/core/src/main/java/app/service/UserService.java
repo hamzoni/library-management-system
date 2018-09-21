@@ -2,15 +2,13 @@ package app.service;
 
 import java.util.List;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
-
 import app.entity.User;
 
 /*
  * Use cases: 18, 16, 17, 15, 19, 13, 24
  */
 
-public interface UserService extends UserDetailsService {
+public interface UserService {
 	// UC18
 	void create(User user);
 
